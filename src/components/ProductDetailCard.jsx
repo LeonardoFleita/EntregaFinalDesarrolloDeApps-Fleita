@@ -1,0 +1,107 @@
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import FlatCard from "./FlatCard";
+import { colors } from "../global/colors";
+
+const ProductDetailCard = ({ product }) => {
+  return (
+    <FlatCard style={styles.productContainer}>
+      <View style={styles.imageContainer}>
+        {product.image && (
+          <Image
+            source={{ uri: product.image[0] }}
+            style={styles.image}
+            resizeMode="contain"
+          />
+        )}
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={{ ...styles.text, ...styles.title }}>{product.name}</Text>
+        <Text style={{ ...styles.text, ...styles.description }}>
+          {product.description}
+        </Text>
+        <Text style={styles.text}>Marca: {product.brand}</Text>
+        <View style={{ flexDirection: "row", gap: 15 }}>
+          {product.tags &&
+            product.tags.map((tag, index) => (
+              <Text key={index} style={{ ...styles.text, ...styles.tags }}>
+                {tag}
+              </Text>
+            ))}
+        </View>
+        {product.discount > 0 && (
+          <Text style={styles.discount}>Descuento: %{product.discount}</Text>
+        )}
+        <Text style={styles.price}>$ {product.price}</Text>
+        <Pressable style={styles.buyButton}>
+          <Text style={styles.buyButtonText}>Comprar</Text>
+        </Pressable>
+      </View>
+    </FlatCard>
+  );
+};
+
+export default ProductDetailCard;
+
+const styles = StyleSheet.create({
+  productContainer: {
+    marginTop: 10,
+  },
+  imageContainer: {
+    backgroundColor: colors.mediumGrey,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 350,
+    borderRadius: 15,
+  },
+  image: {
+    width: 250,
+    height: 250,
+  },
+  textContainer: {
+    justifyContent: "space-around",
+    gap: 8,
+    margin: 16,
+  },
+  text: {
+    color: colors.lightGrey,
+    fontSize: 16,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 700,
+    alignSelf: "center",
+    marginBottom: 10,
+  },
+  description: {
+    textAlign: "justify",
+  },
+  tags: {
+    color: colors.cyan,
+    fontWeight: "500",
+  },
+  discount: {
+    color: colors.green,
+    fontWeight: "600",
+    fontSize: 18,
+  },
+  price: {
+    fontSize: 28,
+    fontWeight: "600",
+    alignSelf: "flex-end",
+    color: colors.lightGrey,
+  },
+  buyButton: {
+    width: "100%",
+    backgroundColor: colors.yellow,
+    alignSelf: "center",
+    padding: 10,
+    marginVertical: 5,
+    alignItems: "center",
+    borderRadius: 10,
+  },
+  buyButtonText: {
+    fontSize: 18,
+    fontWeight: "600",
+  },
+});
