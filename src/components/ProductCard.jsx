@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: 120,
-    height: 120,
+    width: "75%",
+    height: "75%",
   },
   textContainer: {
     flex: 1,

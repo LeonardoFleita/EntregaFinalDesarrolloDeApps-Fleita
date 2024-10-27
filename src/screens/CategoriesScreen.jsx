@@ -11,10 +11,13 @@ import { categories } from "../data/categories";
 import { colors } from "../global/colors";
 import FlatCard from "../components/FlatCard";
 
-const CategoriesScreen = ({ setCategory }) => {
+const CategoriesScreen = ({ navigation }) => {
   const renderCategoryItem = ({ item }) => {
     return (
-      <Pressable onPress={() => setCategory(item.category)}>
+      <Pressable
+        onPress={() => navigation.navigate("Productos", item.category)}
+        style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+      >
         <FlatCard style={styles.categoryContainer}>
           <Image
             source={{ uri: item.thumbnail }}
@@ -29,7 +32,6 @@ const CategoriesScreen = ({ setCategory }) => {
 
   return (
     <View style={styles.categoriesContainer}>
-      <Text style={styles.title}>Categorías</Text>
       <FlatList
         data={categories}
         keyExtractor={(item) => item.id}

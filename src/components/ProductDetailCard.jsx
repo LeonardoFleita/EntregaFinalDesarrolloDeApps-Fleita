@@ -33,7 +33,12 @@ const ProductDetailCard = ({ product }) => {
           <Text style={styles.discount}>Descuento: %{product.discount}</Text>
         )}
         <Text style={styles.price}>$ {product.price}</Text>
-        <Pressable style={styles.buyButton}>
+        <Pressable
+          style={({ pressed }) => [
+            { opacity: pressed ? 0.7 : 1 },
+            styles.buyButton,
+          ]}
+        >
           <Text style={styles.buyButtonText}>Comprar</Text>
         </Pressable>
       </View>
@@ -51,12 +56,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mediumGrey,
     justifyContent: "center",
     alignItems: "center",
-    height: 350,
+    aspectRatio: 1.2,
     borderRadius: 15,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: "80%",
+    height: "80%",
   },
   textContainer: {
     justifyContent: "space-around",
