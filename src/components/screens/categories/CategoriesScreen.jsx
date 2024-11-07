@@ -5,17 +5,21 @@ import {
   StyleSheet,
   Text,
   View,
+  ActivityIndicator,
 } from "react-native";
-import React from "react";
-import { categories } from "../data/categories";
-import { colors } from "../global/colors";
-import FlatCard from "../components/FlatCard";
+import { colors } from "../../../global/colors";
+import FlatCard from "../../common/FlatCard";
+import { useGetCategoriesQuery } from "../../../services/shopService";
 
 const CategoriesScreen = ({ navigation }) => {
+  const { data: categories, error, isLoading } = useGetCategoriesQuery();
+
   const renderCategoryItem = ({ item }) => {
     return (
       <Pressable
-        onPress={() => navigation.navigate("Productos", item.category)}
+        onPress={() => {
+          navigation.navigate("Productos", item.category);
+        }}
         style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
       >
         <FlatCard style={styles.categoryContainer}>
@@ -31,14 +35,20 @@ const CategoriesScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.categoriesContainer}>
-      <FlatList
-        data={categories}
-        keyExtractor={(item) => item.id}
-        renderItem={renderCategoryItem}
-        numColumns={2}
-      />
-    </View>
+    <>
+      {isLoading ? (
+        <ActivityIndicator size={30} />
+      ) : (
+        <View style={styles.categoriesContainer}>
+          <FlatList
+            data={categories}
+            keyExtractor={(item) => item.id}
+            renderItem={renderCategoryItem}
+            numColumns={2}
+          />
+        </View>
+      )}
+    </>
   );
 };
 

@@ -1,11 +1,12 @@
 import { ScrollView, StyleSheet } from "react-native";
-import { products } from "../data/products";
+import products from "../../../data/products";
 import { useEffect, useState } from "react";
-import ProductDetailCard from "../components/ProductDetailCard";
+import ProductDetailCard from "./ProductDetailCard";
 
-const ProductDetailScreen = ({ route, navigation }) => {
+const ProductDetailScreen = ({ route }) => {
   const [product, setProduct] = useState({});
   const productId = route.params;
+
   useEffect(() => {
     setProduct(products.find((p) => p.id === productId));
   }, [productId]);

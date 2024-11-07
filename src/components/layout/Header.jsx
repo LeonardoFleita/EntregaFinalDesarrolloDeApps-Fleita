@@ -1,6 +1,5 @@
 import { StyleSheet, TextInput, View } from "react-native";
-import { colors } from "../global/colors";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { colors } from "../../global/colors";
 
 const Header = () => {
   return (

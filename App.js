@@ -2,10 +2,11 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import Header from "./src/components/Header";
+import Header from "./src/components/layout/Header";
 import { useEffect } from "react";
 import TabNavigator from "./src/navigation/TabNavigator";
-import { colors } from "./src/global/colors";
+import store from "./src/store/store";
+import { Provider } from "react-redux";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,16 +26,12 @@ export default function App() {
   }
 
   return (
-    <View style={styles.body}>
+    <Provider store={store}>
       <Header />
       <TabNavigator />
       <StatusBar style="light" />
-    </View>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

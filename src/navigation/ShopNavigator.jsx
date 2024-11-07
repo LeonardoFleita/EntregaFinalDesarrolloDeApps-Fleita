@@ -3,7 +3,7 @@ import {
   CategoriesScreen,
   ProductsScreen,
   ProductDetailScreen,
-} from "../screens";
+} from "../components/screens";
 import { colors } from "../global/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 

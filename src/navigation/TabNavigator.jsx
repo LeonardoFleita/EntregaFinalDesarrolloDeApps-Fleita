@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import ShopNavigator from "./ShopNavigator";
 import { colors } from "../global/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Cart from "../screens/Cart";
+import Cart from "../components/screens/cart/CartScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,9 +14,17 @@ const TabNavigator = () => {
       <Tab.Navigator
         inialRouteName="Tienda"
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           tabBarShowLabel: false,
           tabBarStyle: styles.tabBar,
+          headerStyle: {
+            backgroundColor: colors.black,
+            shadowColor: colors.black,
+          },
+          headerTitleStyle: {
+            color: colors.lightGrey,
+          },
+          headerTitleAlign: "center",
         }}
       >
         <Tab.Screen
@@ -25,11 +33,12 @@ const TabNavigator = () => {
           options={{
             tabBarIcon: ({ focused }) => (
               <Icon
-                name="shopping-outline"
+                name={focused ? "shopping" : "shopping-outline"}
                 size={27}
                 color={focused ? colors.yellow : colors.lightGrey}
               />
             ),
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -38,7 +47,7 @@ const TabNavigator = () => {
           options={{
             tabBarIcon: ({ focused }) => (
               <Icon
-                name="cart-outline"
+                name={focused ? "cart" : "cart-outline"}
                 size={27}
                 color={focused ? colors.yellow : colors.mediumGrey}
               />

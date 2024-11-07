@@ -1,9 +1,12 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import FlatCard from "./FlatCard";
-import { colors } from "../global/colors";
+import FlatCard from "../../common/FlatCard";
+import { colors } from "../../../global/colors";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../../features/cart/cartSlice";
 
 const ProductDetailCard = ({ product }) => {
+  const dispatch = useDispatch();
+
   return (
     <FlatCard style={styles.productContainer}>
       <View style={styles.imageContainer}>
@@ -38,8 +41,9 @@ const ProductDetailCard = ({ product }) => {
             { opacity: pressed ? 0.7 : 1 },
             styles.buyButton,
           ]}
+          onPress={() => dispatch(addItem({ ...product, quantity: 1 }))}
         >
-          <Text style={styles.buyButtonText}>Comprar</Text>
+          <Text style={styles.buyButtonText}>Agregar al carrito</Text>
         </Pressable>
       </View>
     </FlatCard>
