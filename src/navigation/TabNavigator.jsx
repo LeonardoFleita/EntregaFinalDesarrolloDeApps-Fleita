@@ -5,6 +5,9 @@ import ShopNavigator from "./ShopNavigator";
 import { colors } from "../global/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Cart from "../components/screens/cart/CartScreen";
+import Receipts from "../components/screens/receipts/Receipts";
+import Ionicon from "react-native-vector-icons/Ionicons";
+import Header from "../components/layout/Header";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,19 +15,22 @@ const TabNavigator = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        inialRouteName="Tienda"
+        initialRouteName="Tienda"
         screenOptions={{
           headerShown: true,
           tabBarShowLabel: false,
           tabBarStyle: styles.tabBar,
-          headerStyle: {
-            backgroundColor: colors.black,
-            shadowColor: colors.black,
-          },
-          headerTitleStyle: {
-            color: colors.lightGrey,
-          },
+          // headerStyle: {
+          //   backgroundColor: colors.black,
+          //   shadowColor: colors.black,
+          // },
+          // headerTitleStyle: {
+          //   color: colors.lightGrey,
+          // },
           headerTitleAlign: "center",
+          header: ({ navigation, route }) => (
+            <Header navigation={navigation} route={route} /> // Header personalizado
+          ),
         }}
       >
         <Tab.Screen
@@ -38,7 +44,7 @@ const TabNavigator = () => {
                 color={focused ? colors.yellow : colors.lightGrey}
               />
             ),
-            headerShown: false,
+            headerShown: true,
           }}
         />
         <Tab.Screen
@@ -48,6 +54,19 @@ const TabNavigator = () => {
             tabBarIcon: ({ focused }) => (
               <Icon
                 name={focused ? "cart" : "cart-outline"}
+                size={27}
+                color={focused ? colors.yellow : colors.mediumGrey}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Recibos"
+          component={Receipts}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Ionicon
+                name={focused ? "receipt" : "receipt-outline"}
                 size={27}
                 color={focused ? colors.yellow : colors.mediumGrey}
               />
@@ -64,7 +83,7 @@ export default TabNavigator;
 const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: colors.darkGrey,
-    borderTopWidth: 1.5,
+    borderTopWidth: 0,
     borderColor: colors.black,
     elevation: 3,
     position: "absolute",

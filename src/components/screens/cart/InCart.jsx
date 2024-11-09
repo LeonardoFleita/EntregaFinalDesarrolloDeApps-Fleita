@@ -8,7 +8,7 @@ import {
   deleteItem,
 } from "../../../features/cart/cartSlice";
 
-const InCart = ({ item, dispatch }) => {
+const InCart = ({ item, dispatch, priceFormat }) => {
   const totalPriceItem = item.price * item.quantity;
 
   const press = ({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }];
@@ -42,10 +42,12 @@ const InCart = ({ item, dispatch }) => {
           <Icon name="delete" size={30} color={colors.yellow} />
         </Pressable>
       </View>
-      <Text style={{ ...styles.text }}>Precio unitario: ${item.price}</Text>
+      <Text style={{ ...styles.text }}>
+        Precio unitario: {priceFormat(item.price, 0)}
+      </Text>
 
       <Text style={{ ...styles.text, ...styles.productTotal }}>
-        Total: $ {totalPriceItem}
+        Total: {priceFormat(totalPriceItem, 0)}
       </Text>
     </ProductCard>
   );

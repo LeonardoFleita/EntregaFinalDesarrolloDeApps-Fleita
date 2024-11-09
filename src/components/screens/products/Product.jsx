@@ -1,6 +1,7 @@
 import { FlatList, Image, StyleSheet, Text } from "react-native";
 import { colors } from "../../../global/colors";
 import ProductCard from "../../common/ProductCard";
+import { priceFormat } from "../../../utils/functions";
 
 const Product = ({ item }) => {
   return (
@@ -22,7 +23,7 @@ const Product = ({ item }) => {
         <Text style={styles.discount}>Descuento: {item.discount}%</Text>
       )}
       <Text style={{ ...styles.productText, fontSize: 18 }}>
-        $ {item.price}
+        {priceFormat(item.price, 0)}
       </Text>
     </ProductCard>
   );

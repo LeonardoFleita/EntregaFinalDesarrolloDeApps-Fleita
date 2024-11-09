@@ -3,7 +3,7 @@ import products from "../../../data/products";
 import { useEffect, useState } from "react";
 import ProductDetailCard from "./ProductDetailCard";
 
-const ProductDetailScreen = ({ route }) => {
+const ProductDetailScreen = ({ route, navigation }) => {
   const [product, setProduct] = useState({});
   const productId = route.params;
 
@@ -13,7 +13,7 @@ const ProductDetailScreen = ({ route }) => {
 
   return (
     <ScrollView style={{ width: "90%", alignSelf: "center" }}>
-      <ProductDetailCard product={product} />
+      <ProductDetailCard product={product} navigation={navigation} />
     </ScrollView>
   );
 };

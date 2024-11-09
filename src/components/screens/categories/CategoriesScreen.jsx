@@ -18,7 +18,7 @@ const CategoriesScreen = ({ navigation }) => {
     return (
       <Pressable
         onPress={() => {
-          navigation.navigate("Productos", item.category);
+          navigation.navigate("Productos", { category: item.category });
         }}
         style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
       >

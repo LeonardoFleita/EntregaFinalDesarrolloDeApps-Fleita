@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <Header />
+      {/* <Header /> */}
       <TabNavigator />
       <StatusBar style="light" />
     </Provider>

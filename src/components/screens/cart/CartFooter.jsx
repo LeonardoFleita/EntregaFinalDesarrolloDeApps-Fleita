@@ -1,8 +1,20 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import { colors } from "../../../global/colors";
 import { cleanCart } from "../../../features/cart/cartSlice";
+import { usePostReceiptMutation } from "../../../services/receiptsService";
 
-const CartFooter = ({ dispatch, total }) => {
+const CartFooter = ({ dispatch, total, cart, navigation, priceFormat }) => {
+  const [triggerPost, result] = usePostReceiptMutation();
+  const comprar = async () => {
+    try {
+      await triggerPost({ cart, total, createAt: Date.now() });
+      dispatch(cleanCart());
+      navigation.navigate("Recibos");
+    } catch (err) {
+      console.error("Error al procesar la compra", err);
+    }
+  };
+
   return (
     <>
       <Text
@@ -11,7 +23,7 @@ const CartFooter = ({ dispatch, total }) => {
           ...styles.total,
         }}
       >
-        $ {total}
+        {priceFormat(total, 2)}
       </Text>
       <Pressable
         style={{ ...styles.bttn, backgroundColor: colors.red }}
@@ -23,7 +35,7 @@ const CartFooter = ({ dispatch, total }) => {
       </Pressable>
       <Pressable
         style={{ ...styles.bttn, backgroundColor: colors.yellow }}
-        onPress={() => dispatch(cleanCart())}
+        onPress={comprar}
       >
         <Text style={{ ...styles.bttnText, color: colors.black }}>Comprar</Text>
       </Pressable>
@@ -38,7 +50,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 13,
   },
   bttnText: {
     fontSize: 18,
