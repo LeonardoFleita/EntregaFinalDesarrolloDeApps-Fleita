@@ -39,11 +39,11 @@ export const sessionStyles = {
     marginVertical: 20,
   },
   textInput: {
-    borderRadius: 15,
+    borderRadius: 25,
     backgroundColor: colors.mediumGrey,
     width: "100%",
     paddingHorizontal: 10,
-    height: 35,
+    height: 38,
     alignSelf: "center",
   },
 };

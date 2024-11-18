@@ -17,13 +17,19 @@ const authSlice = createSlice({
       state.value = { ...state.value, ...action.payload };
     },
     clearUser: (state) => {
+      state.value.name = "";
+      state.value.lastname = "";
       state.value.email = "";
       state.value.token = "";
       state.value.localId = "";
+      state.value.profilePicture = "";
+    },
+    setProfilePicture: (state, action) => {
+      state.value.profilePicture = action.payload;
     },
   },
 });
 
-export const { setUser, clearUser } = authSlice.actions;
+export const { setUser, clearUser, setProfilePicture } = authSlice.actions;
 
 export default authSlice.reducer;
