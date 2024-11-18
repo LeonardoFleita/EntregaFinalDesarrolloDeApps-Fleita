@@ -4,11 +4,13 @@ import { colors } from "../../../global/colors";
 import InCart from "./InCart";
 import CartFooter from "./CartFooter";
 import { priceFormat } from "../../../utils/functions";
+import { useState } from "react";
 
 const CartScreen = ({ navigation }) => {
   const cart = useSelector((state) => state.cartReducer.value.cartItems);
   const total = useSelector((state) => state.cartReducer.value.total);
   const dispatch = useDispatch();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const renderCartItem = ({ item }) => (
     <InCart item={item} dispatch={dispatch} priceFormat={priceFormat} />
@@ -45,15 +47,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
   },
   cartContainer: {
+    flex: 1,
     width: "90%",
     alignSelf: "center",
-    paddingBottom: 60,
+    paddingBottom: 5,
   },
   textTitle: {
     fontSize: 21,
     color: colors.lightGrey,
     fontWeight: "500",
     alignSelf: "center",
-    paddingTop: 14,
+    paddingVertical: 13.5,
   },
 });

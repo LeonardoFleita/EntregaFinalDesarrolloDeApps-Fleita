@@ -10,9 +10,20 @@ import {
 import { colors } from "../../../global/colors";
 import FlatCard from "../../common/FlatCard";
 import { useGetCategoriesQuery } from "../../../services/shopService";
+import { useDispatch } from "react-redux";
+import { showHeader } from "../../../features/header/headerSlice";
+import { useEffect } from "react";
+import { useIsFocused } from "@react-navigation/native";
 
 const CategoriesScreen = ({ navigation }) => {
   const { data: categories, error, isLoading } = useGetCategoriesQuery();
+  const dispatch = useDispatch();
+
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    isFocused && dispatch(showHeader());
+  }, [isFocused]);
 
   const renderCategoryItem = ({ item }) => {
     return (

@@ -1,15 +1,11 @@
 import { StyleSheet, Text } from "react-native";
-import { colors } from "../../../global/colors";
-import GenericModal from "../../common/GenericModal";
+import React from "react";
+import GenericModal from "../../../common/GenericModal";
+import { colors } from "../../../../global/colors";
 
-const ProductsModal = ({
-  modalVisible,
-  setModalVisible,
-  search,
-  navigation,
-}) => {
+const AuthModal = ({ modalVisible, setModalVisible, error, setNewUser }) => {
   const onCloseModal = () => {
-    navigation.navigate("Categorías");
+    error ? null : setNewUser(false);
   };
   return (
     <GenericModal
@@ -24,12 +20,14 @@ const ProductsModal = ({
           alignSelf: "center",
         }}
       >
-        No se ha encontrado ningún producto: "{search}"
+        {error
+          ? `Error al agregar usuario ${error}`
+          : "Usuario agregado con éxito"}
       </Text>
     </GenericModal>
   );
 };
 
-export default ProductsModal;
+export default AuthModal;
 
 const styles = StyleSheet.create({});

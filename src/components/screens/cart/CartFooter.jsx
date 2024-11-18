@@ -47,7 +47,7 @@ export default CartFooter;
 
 const styles = StyleSheet.create({
   bttn: {
-    padding: 10,
+    padding: 9,
     borderRadius: 10,
     alignItems: "center",
     marginTop: 13,

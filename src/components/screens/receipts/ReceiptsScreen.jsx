@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Receipts = () => {
+const ReceiptsScreen = () => {
   return (
     <View>
       <Text>Receipts</Text>
@@ -9,6 +9,6 @@ const Receipts = () => {
   );
 };
 
-export default Receipts;
+export default ReceiptsScreen;
 
 const styles = StyleSheet.create({});

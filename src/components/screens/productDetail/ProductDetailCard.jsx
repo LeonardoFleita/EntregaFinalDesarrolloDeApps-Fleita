@@ -3,6 +3,8 @@ import FlatCard from "../../common/FlatCard";
 import { colors } from "../../../global/colors";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../../features/cart/cartSlice";
+import { priceFormat } from "../../../utils/functions";
+import { buttonStyles } from "../../../styles/styles";
 
 const ProductDetailCard = ({ product, navigation }) => {
   const dispatch = useDispatch();
@@ -35,18 +37,20 @@ const ProductDetailCard = ({ product, navigation }) => {
         {product.discount > 0 && (
           <Text style={styles.discount}>Descuento: %{product.discount}</Text>
         )}
-        <Text style={styles.price}>$ {product.price}</Text>
+        <Text style={styles.price}>
+          {product.price && priceFormat(product.price, 0)}
+        </Text>
         <Pressable
           style={({ pressed }) => [
             { opacity: pressed ? 0.7 : 1 },
-            styles.buyButton,
+            buttonStyles.base,
           ]}
           onPress={() => {
             dispatch(addItem({ ...product, quantity: 1 }));
             navigation.navigate("Carrito");
           }}
         >
-          <Text style={styles.buyButtonText}>Agregar al carrito</Text>
+          <Text style={buttonStyles.text}>Agregar al carrito</Text>
         </Pressable>
       </View>
     </FlatCard>
@@ -102,18 +106,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     alignSelf: "flex-end",
     color: colors.lightGrey,
-  },
-  buyButton: {
-    width: "100%",
-    backgroundColor: colors.yellow,
-    alignSelf: "center",
-    padding: 10,
-    marginVertical: 5,
-    alignItems: "center",
-    borderRadius: 10,
-  },
-  buyButtonText: {
-    fontSize: 18,
-    fontWeight: "600",
   },
 });

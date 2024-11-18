@@ -2,17 +2,17 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import Header from "./src/components/layout/Header";
 import { useEffect } from "react";
 import TabNavigator from "./src/navigation/TabNavigator";
 import store from "./src/store/store";
 import { Provider } from "react-redux";
+import { colors } from "./src/global/colors";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [loaded, error] = useFonts({
-    //'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
+    Baumans: require("./assets/fonts/Baumans-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -26,12 +26,15 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      {/* <Header /> */}
-      <TabNavigator />
-      <StatusBar style="light" />
-    </Provider>
+    <View style={styles.body}>
+      <Provider store={store}>
+        <TabNavigator />
+        <StatusBar style="light" />
+      </Provider>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  body: { flex: 1, backgroundColor: colors.black },
+});

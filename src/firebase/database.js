@@ -1,2 +1,3 @@
-export const baseUrl =
-  "https://desarrolloapps-leonardofleita-default-rtdb.firebaseio.com/";
+export const baseUrl = "bla";
+export const baseAuthUrl = "bla";
+export const apiKey = "bla";

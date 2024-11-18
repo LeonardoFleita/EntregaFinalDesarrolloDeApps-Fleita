@@ -35,7 +35,7 @@ const InCart = ({ item, dispatch, priceFormat }) => {
         <Pressable
           style={({ pressed }) => [
             { opacity: pressed ? 0.7 : 1 },
-            { paddingLeft: 20 },
+            { paddingLeft: 25 },
           ]}
           onPress={() => dispatch(deleteItem(item))}
         >
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   productQuantity: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 12,
   },
   quantity: {
     fontSize: 18,
