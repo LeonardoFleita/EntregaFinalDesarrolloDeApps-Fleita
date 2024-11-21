@@ -1,14 +1,15 @@
-import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { colors } from "../../global/colors";
 import { useState } from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { press } from "../../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { hideHeader } from "../../features/header/headerSlice";
+import { showFav } from "../../features/header/headerSlice";
 
 const Header = ({ navigation }) => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.authReducer.value);
+  const isFav = useSelector((state) => state.headerReducer.value.isFav);
 
   const handlerSearch = () => {
     const wanted = input;
@@ -26,28 +27,20 @@ const Header = ({ navigation }) => {
         onChangeText={(text) => setInput(text)}
         onSubmitEditing={handlerSearch}
         value={input}
+        returnKeyType="search"
       />
       <Pressable
-        style={({ pressed }) => [
-          { opacity: pressed ? 0.8 : 1 },
-          {
-            alignItems: "center",
-          },
-        ]}
+        style={press({ alignItems: "center" })}
         onPress={() => {
-          dispatch(hideHeader());
-          navigation.navigate("Perfil");
+          dispatch(showFav());
+          navigation.navigate("Favoritos");
         }}
       >
-        {user.profilePicture ? (
-          <Image
-            source={{ uri: user.profilePicture }}
-            style={styles.image}
-            resizeMode="contain"
-          />
-        ) : (
-          <Icon name="account-circle" size={45} color={colors.mediumGrey} />
-        )}
+        <Icon
+          name="heart"
+          size={38}
+          color={isFav ? colors.yellow : colors.mediumGrey}
+        />
       </Pressable>
     </View>
   );
@@ -70,12 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.mediumGrey,
     width: "85%",
     paddingHorizontal: 10,
-    height: 38,
+    height: 35,
     alignSelf: "center",
-  },
-  image: {
-    width: 38,
-    aspectRatio: 1,
-    borderRadius: 25,
   },
 });

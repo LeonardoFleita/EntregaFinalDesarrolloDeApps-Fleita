@@ -1,5 +1,10 @@
 import { colors } from "../global/colors";
 
+export const press =
+  (extra = {}) =>
+  ({ pressed }) =>
+    [{ opacity: pressed ? 0.7 : 1 }, extra];
+
 export const buttonStyles = {
   base: {
     width: "90%",
@@ -22,7 +27,7 @@ export const sessionStyles = {
     backgroundColor: colors.black,
     alignItems: "center",
     justifyContent: "center",
-    paddingBottom: 65,
+    paddingBottom: 20,
   },
   title: {
     fontFamily: "Baumans",

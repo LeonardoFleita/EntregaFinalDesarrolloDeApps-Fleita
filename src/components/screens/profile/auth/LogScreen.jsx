@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { buttonStyles, sessionStyles } from "../../../../styles/styles";
+import { buttonStyles, press, sessionStyles } from "../../../../styles/styles";
 import { colors } from "../../../../global/colors";
 import AuthModal from "./AuthModal";
 
@@ -9,6 +9,7 @@ const LogScreen = ({
   setPassword,
   onSubmit,
   error,
+  setError,
   modalVisible,
   setModalVisible,
 }) => {
@@ -20,28 +21,24 @@ const LogScreen = ({
           onChangeText={(text) => setEmail(text)}
           placeholder="Email"
           style={sessionStyles.textInput}
+          autoCapitalize="none"
         />
         <TextInput
           onChangeText={(text) => setPassword(text)}
           placeholder="Password"
           style={sessionStyles.textInput}
           secureTextEntry
+          autoCapitalize="none"
         />
       </View>
       <Pressable
-        style={({ pressed }) => [
-          { opacity: pressed ? 0.7 : 1 },
-          { ...buttonStyles.base, ...styles.logBttn },
-        ]}
+        style={press({ ...buttonStyles.base, ...styles.logBttn })}
         onPress={onSubmit}
       >
         <Text style={buttonStyles.text}>Iniciar sesión</Text>
       </Pressable>
       <Pressable
-        style={({ pressed }) => [
-          { opacity: pressed ? 0.7 : 1 },
-          { marginVertical: 15 },
-        ]}
+        style={press({ marginVertical: 15 })}
         onPress={() => setNewUser(true)}
       >
         <Text
@@ -58,6 +55,7 @@ const LogScreen = ({
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         error={error}
+        setError={setError}
         setNewUser={setNewUser}
       />
     </View>

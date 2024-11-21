@@ -3,22 +3,12 @@ import { useGetProductsQuery } from "../../../services/shopService";
 import { useEffect, useState } from "react";
 import { searchedProduct } from "../../../utils/functions";
 import ProductsScreen from "./ProductsScreen";
-import { useDispatch } from "react-redux";
-import { showHeader } from "../../../features/header/headerSlice";
-import { useIsFocused } from "@react-navigation/native";
 
 const ProductsScreenContainer = ({ navigation, route }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const { data: products, isLoading } = useGetProductsQuery();
   const { category, search } = route.params;
-  const dispatch = useDispatch();
-
-  const isFocused = useIsFocused();
-
-  useEffect(() => {
-    isFocused && dispatch(showHeader());
-  }, [isFocused]);
 
   useEffect(() => {
     if (products) {

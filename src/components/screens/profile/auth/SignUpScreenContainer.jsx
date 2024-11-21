@@ -22,6 +22,11 @@ const SignUpScreenContainer = ({ setNewUser }) => {
         setModalVisible(true);
         return;
       }
+      if (!name || !lastname || !email || !password) {
+        setError(": Debe completar todos los campos");
+        setModalVisible(true);
+        return;
+      }
       const response = await triggerSignUp({ email, password }).unwrap();
       const userId = response.localId;
       await triggerSaveUserData({ userId, data: { name, lastname, email } });
@@ -42,6 +47,7 @@ const SignUpScreenContainer = ({ setNewUser }) => {
       setModalVisible={setModalVisible}
       modalVisible={modalVisible}
       error={error}
+      setError={setError}
       onSubmit={onSubmit}
     />
   );

@@ -40,6 +40,7 @@ const LogScreenContainer = ({ setNewUser }) => {
       setPassword={setPassword}
       onSubmit={onSubmit}
       error={error}
+      setError={setError}
       modalVisible={modalVisible}
       setModalVisible={setModalVisible}
     />

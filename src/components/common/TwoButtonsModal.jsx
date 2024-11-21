@@ -2,11 +2,12 @@ import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../global/colors";
 import { press } from "../../styles/styles";
 
-const GenericModal = ({
+const TwoButtonsModal = ({
+  children,
   modalVisible,
   setModalVisible,
-  children,
   onCloseModal,
+  confirmButton,
 }) => {
   return (
     <Modal
@@ -18,24 +19,37 @@ const GenericModal = ({
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
           {children}
-          <Pressable
-            onPress={() => {
-              setModalVisible(false);
-              onCloseModal();
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              gap: 30,
             }}
-            style={press()}
           >
-            <Text style={{ alignSelf: "flex-end", color: colors.yellow }}>
-              CERRAR
-            </Text>
-          </Pressable>
+            <Pressable onPress={() => setModalVisible(false)}>
+              <Text style={{ alignSelf: "flex-end", color: colors.lightGrey }}>
+                CANCELAR
+              </Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                setModalVisible(false);
+                onCloseModal();
+              }}
+              style={press()}
+            >
+              <Text style={{ alignSelf: "flex-end", color: colors.yellow }}>
+                {confirmButton}
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </Modal>
   );
 };
 
-export default GenericModal;
+export default TwoButtonsModal;
 
 const styles = StyleSheet.create({
   modalOverlay: {

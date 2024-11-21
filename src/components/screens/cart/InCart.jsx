@@ -7,14 +7,13 @@ import {
   decrementItem,
   deleteItem,
 } from "../../../features/cart/cartSlice";
+import { press } from "../../../styles/styles";
 
 const InCart = ({ item, dispatch, priceFormat }) => {
   const totalPriceItem = item.price * item.quantity;
 
-  const press = ({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }];
-
   const quantityIcon = (name, action) => (
-    <Pressable style={press} onPress={() => dispatch(action)}>
+    <Pressable style={press()} onPress={() => dispatch(action)}>
       <Icon name={name} size={25} color={colors.yellow} />
     </Pressable>
   );
@@ -33,10 +32,7 @@ const InCart = ({ item, dispatch, priceFormat }) => {
         </Text>
         {quantityIcon("plus-box", incrementItem(item))}
         <Pressable
-          style={({ pressed }) => [
-            { opacity: pressed ? 0.7 : 1 },
-            { paddingLeft: 25 },
-          ]}
+          style={press({ paddingLeft: 25 })}
           onPress={() => dispatch(deleteItem(item))}
         >
           <Icon name="delete" size={30} color={colors.yellow} />

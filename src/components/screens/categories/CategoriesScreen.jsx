@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { colors } from "../../../global/colors";
 import FlatCard from "../../common/FlatCard";
+import { press } from "../../../styles/styles";
 
 const CategoriesScreen = ({ navigation, categories, isLoading }) => {
   const renderCategoryItem = ({ item }) => {
@@ -17,7 +18,7 @@ const CategoriesScreen = ({ navigation, categories, isLoading }) => {
         onPress={() => {
           navigation.navigate("Productos", { category: item.category });
         }}
-        style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+        style={press()}
       >
         <FlatCard style={styles.categoryContainer}>
           <Image
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   },
   categoryContainer: {
     margin: 10,
-    height: 210,
+    height: 207,
   },
   image: {
     width: 170,

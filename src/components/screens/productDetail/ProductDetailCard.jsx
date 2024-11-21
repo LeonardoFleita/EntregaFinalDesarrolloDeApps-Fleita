@@ -4,7 +4,7 @@ import { colors } from "../../../global/colors";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../../features/cart/cartSlice";
 import { priceFormat } from "../../../utils/functions";
-import { buttonStyles } from "../../../styles/styles";
+import { buttonStyles, press } from "../../../styles/styles";
 
 const ProductDetailCard = ({ product, navigation }) => {
   const dispatch = useDispatch();
@@ -41,13 +41,10 @@ const ProductDetailCard = ({ product, navigation }) => {
           {product.price && priceFormat(product.price, 0)}
         </Text>
         <Pressable
-          style={({ pressed }) => [
-            { opacity: pressed ? 0.7 : 1 },
-            buttonStyles.base,
-          ]}
+          style={press({ ...buttonStyles.base })}
           onPress={() => {
             dispatch(addItem({ ...product, quantity: 1 }));
-            navigation.navigate("Carrito");
+            navigation.navigate("Cart");
           }}
         >
           <Text style={buttonStyles.text}>Agregar al carrito</Text>

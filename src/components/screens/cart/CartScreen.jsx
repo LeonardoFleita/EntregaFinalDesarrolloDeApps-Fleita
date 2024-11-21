@@ -1,17 +1,18 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../../global/colors";
 import InCart from "./InCart";
 import CartFooter from "./CartFooter";
 import { priceFormat } from "../../../utils/functions";
-import { useState } from "react";
 
-const CartScreen = ({ navigation }) => {
-  const cart = useSelector((state) => state.cartReducer.value.cartItems);
-  const total = useSelector((state) => state.cartReducer.value.total);
-  const dispatch = useDispatch();
-  const [modalVisible, setModalVisible] = useState(false);
-
+const CartScreen = ({
+  navigation,
+  cart,
+  total,
+  dispatch,
+  modalVisible,
+  setModalVisible,
+  handleBuy,
+}) => {
   const renderCartItem = ({ item }) => (
     <InCart item={item} dispatch={dispatch} priceFormat={priceFormat} />
   );
@@ -20,20 +21,34 @@ const CartScreen = ({ navigation }) => {
     <View style={styles.cart}>
       <Text style={styles.textTitle}>Carrito</Text>
       <View style={styles.cartContainer}>
-        <FlatList
-          data={cart}
-          keyExtractor={(item) => item.id}
-          renderItem={renderCartItem}
-          ListFooterComponent={
-            <CartFooter
-              dispatch={dispatch}
-              total={total}
-              cart={cart}
-              navigation={navigation}
-              priceFormat={priceFormat}
+        {cart.length < 1 ? (
+          <View style={styles.cartImageContainer}>
+            <Image
+              source={{
+                uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732155586/desarrollo%20de%20apps/ecommerce/aqgv0fffh08i7bmyw0nm.png",
+              }}
+              style={styles.cartImage}
+              resizeMode="contain"
             />
-          }
-        />
+            <Text style={styles.cartImageText}>Carrito vacío</Text>
+          </View>
+        ) : (
+          <FlatList
+            data={cart}
+            keyExtractor={(item) => item.id}
+            renderItem={renderCartItem}
+            ListFooterComponent={
+              <CartFooter
+                dispatch={dispatch}
+                total={total}
+                priceFormat={priceFormat}
+                handleBuy={handleBuy}
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+              />
+            }
+          />
+        )}
       </View>
     </View>
   );
@@ -58,5 +73,20 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     alignSelf: "center",
     paddingVertical: 13.5,
+  },
+  cartImageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 50,
+  },
+  cartImage: {
+    width: 350,
+    height: 230,
+    alignSelf: "center",
+  },
+  cartImageText: {
+    color: colors.lightGrey,
+    fontSize: 22,
   },
 });

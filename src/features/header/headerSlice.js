@@ -5,6 +5,7 @@ const headerSlice = createSlice({
   initialState: {
     value: {
       isVisible: true,
+      isFav: false,
     },
   },
   reducers: {
@@ -14,9 +15,15 @@ const headerSlice = createSlice({
     hideHeader: (state) => {
       state.value.isVisible = false;
     },
+    showFav: (state) => {
+      state.value.isFav = true;
+    },
+    hideFav: (state) => {
+      state.value.isFav = false;
+    },
   },
 });
 
-export const { showHeader, hideHeader } = headerSlice.actions;
+export const { showHeader, hideHeader, showFav, hideFav } = headerSlice.actions;
 
 export default headerSlice.reducer;

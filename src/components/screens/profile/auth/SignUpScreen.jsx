@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { buttonStyles, sessionStyles } from "../../../../styles/styles";
+import { buttonStyles, press, sessionStyles } from "../../../../styles/styles";
 import { colors } from "../../../../global/colors";
 import AuthModal from "./AuthModal";
 
@@ -12,6 +12,7 @@ const SignUpScreen = ({
   setLastname,
   modalVisible,
   error,
+  setError,
   onSubmit,
   setModalVisible,
 }) => {
@@ -33,37 +34,31 @@ const SignUpScreen = ({
           onChangeText={(text) => setEmail(text)}
           placeholder="Email"
           style={sessionStyles.textInput}
+          autoCapitalize="none"
         />
         <TextInput
           onChangeText={(text) => setPassword(text)}
           placeholder="Password"
           style={sessionStyles.textInput}
           secureTextEntry
+          autoCapitalize="none"
         />
         <TextInput
           onChangeText={(text) => setConfirmPassword(text)}
           placeholder="Repetir password"
           style={sessionStyles.textInput}
           secureTextEntry
+          autoCapitalize="none"
         />
       </View>
       <Pressable
-        style={({ pressed }) => [
-          { opacity: pressed ? 0.7 : 1 },
-          {
-            ...buttonStyles.base,
-            ...styles.signUpBttn,
-          },
-        ]}
+        style={press({ ...buttonStyles.base, ...styles.signUpBttn })}
         onPress={onSubmit}
       >
         <Text style={buttonStyles.text}>Registrarse</Text>
       </Pressable>
       <Pressable
-        style={({ pressed }) => [
-          { opacity: pressed ? 0.7 : 1 },
-          { marginVertical: 15 },
-        ]}
+        style={press({ marginVertical: 15 })}
         onPress={() => setNewUser(false)}
       >
         <Text
@@ -80,6 +75,7 @@ const SignUpScreen = ({
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         error={error}
+        setError={setError}
         setNewUser={setNewUser}
       />
     </View>

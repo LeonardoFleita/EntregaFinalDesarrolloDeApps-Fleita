@@ -1,16 +1,17 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
-  CategoriesScreenContainer,
-  ProductsScreenContainer,
-  ProductDetailScreen,
-  FavouritesScreenContainer,
+  ProfileContainer,
+  LocationScreenContainer,
+  ReceiptsScreenContainer,
+  ChangePasswordScreenContainer,
+  ConfigScreenContainer,
 } from "../components/screens";
 import { colors } from "../global/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 const Stack = createNativeStackNavigator();
 
-const ShopNavigator = () => {
+const ProfileNavigator = () => {
   const screenOptions = ({ navigation }) => ({
     headerTitleAlign: "center",
     headerLeft: () => (
@@ -36,20 +37,16 @@ const ShopNavigator = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen name="Perfil" component={ProfileContainer} />
+      <Stack.Screen name="Mis compras" component={ReceiptsScreenContainer} />
       <Stack.Screen
-        name="Categorías"
-        component={CategoriesScreenContainer}
-        options={{ headerLeft: null }}
+        name="Cambiar contraseña"
+        component={ChangePasswordScreenContainer}
       />
-      <Stack.Screen name="Productos" component={ProductsScreenContainer} />
-      <Stack.Screen
-        name="Producto"
-        component={ProductDetailScreen}
-        options={{ headerTitle: "" }}
-      />
-      <Stack.Screen name="Favoritos" component={FavouritesScreenContainer} />
+      <Stack.Screen name="Ubicación" component={LocationScreenContainer} />
+      <Stack.Screen name="Configuración" component={ConfigScreenContainer} />
     </Stack.Navigator>
   );
 };
 
-export default ShopNavigator;
+export default ProfileNavigator;

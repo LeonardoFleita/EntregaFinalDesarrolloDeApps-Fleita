@@ -3,9 +3,15 @@ import React from "react";
 import GenericModal from "../../../common/GenericModal";
 import { colors } from "../../../../global/colors";
 
-const AuthModal = ({ modalVisible, setModalVisible, error, setNewUser }) => {
+const AuthModal = ({
+  modalVisible,
+  setModalVisible,
+  error,
+  setError,
+  setNewUser,
+}) => {
   const onCloseModal = () => {
-    error ? null : setNewUser(false);
+    error ? setError(null) : setNewUser(false);
   };
   return (
     <GenericModal

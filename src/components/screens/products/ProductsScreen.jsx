@@ -1,6 +1,7 @@
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import Product from "./Product";
 import ProductsModal from "./ProductsModal";
+import { press } from "../../../styles/styles";
 
 const ProductsScreen = ({
   navigation,
@@ -12,7 +13,7 @@ const ProductsScreen = ({
   const renderProductItem = ({ item }) => (
     <Pressable
       onPress={() => navigation.navigate("Producto", item.id)}
-      style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+      style={press()}
     >
       <Product item={item} />
     </Pressable>
