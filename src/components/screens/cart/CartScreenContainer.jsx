@@ -7,12 +7,14 @@ import {
   usePostReceiptMutation,
 } from "../../../services/userService";
 import { cleanCart } from "../../../features/cart/cartSlice";
+import { showToast } from "../../../global/toastConfig";
 
 const CartScreenContainer = ({ navigation }) => {
   const cart = useSelector((state) => state.cartReducer.value.cartItems);
   const total = useSelector((state) => state.cartReducer.value.total);
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
 
   const [triggerPost] = usePostReceiptMutation();
   const user = useSelector((state) => state.authReducer.value);
@@ -27,9 +29,10 @@ const CartScreenContainer = ({ navigation }) => {
       });
       refetch();
       dispatch(cleanCart());
+      showToast("success", "Compra realizada con éxito");
       navigation.navigate("Categorías");
     } else {
-      console.log("sin loguearse");
+      setErrorModalVisible(true);
     }
   };
 
@@ -42,6 +45,8 @@ const CartScreenContainer = ({ navigation }) => {
       modalVisible={modalVisible}
       setModalVisible={setModalVisible}
       handleBuy={handleBuy}
+      errorModalVisible={errorModalVisible}
+      setErrorModalVisible={setErrorModalVisible}
     />
   );
 };

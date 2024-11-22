@@ -3,15 +3,17 @@ import { colors } from "../../../global/colors";
 import InCart from "./InCart";
 import CartFooter from "./CartFooter";
 import { priceFormat } from "../../../utils/functions";
+import GenericModal from "../../common/GenericModal";
 
 const CartScreen = ({
-  navigation,
   cart,
   total,
   dispatch,
   modalVisible,
   setModalVisible,
   handleBuy,
+  errorModalVisible,
+  setErrorModalVisible,
 }) => {
   const renderCartItem = ({ item }) => (
     <InCart item={item} dispatch={dispatch} priceFormat={priceFormat} />
@@ -50,6 +52,15 @@ const CartScreen = ({
           />
         )}
       </View>
+      <GenericModal
+        modalVisible={errorModalVisible}
+        setModalVisible={setErrorModalVisible}
+        onCloseModal={() => {}}
+      >
+        <Text style={{ color: colors.lightGrey, fontSize: 20 }}>
+          Debe iniciar sesión para realizar la compra
+        </Text>
+      </GenericModal>
     </View>
   );
 };

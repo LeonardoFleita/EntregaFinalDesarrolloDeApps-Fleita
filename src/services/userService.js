@@ -19,6 +19,13 @@ export const userApi = createApi({
         body: { profilePicture },
       }),
     }),
+    updateName: builder.mutation({
+      query: ({ userId, data }) => ({
+        url: `/users/${userId}.json`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
     postReceipt: builder.mutation({
       query: ({ userId, receipt }) => ({
         url: `/users/${userId}/receipts.json`,
@@ -38,6 +45,7 @@ export const userApi = createApi({
 export const {
   useSaveUserDataMutation,
   useUpdateProfilePictureMutation,
+  useUpdateNameMutation,
   usePostReceiptMutation,
   useGetUserQuery,
   useGetReceiptsQuery,

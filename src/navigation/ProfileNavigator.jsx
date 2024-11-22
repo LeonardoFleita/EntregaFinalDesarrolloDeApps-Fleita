@@ -5,6 +5,7 @@ import {
   ReceiptsScreenContainer,
   ChangePasswordScreenContainer,
   ConfigScreenContainer,
+  PersonalDataScreenContainer,
 } from "../components/screens";
 import { colors } from "../global/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -38,6 +39,10 @@ const ProfileNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="Perfil" component={ProfileContainer} />
+      <Stack.Screen
+        name="Datos personales"
+        component={PersonalDataScreenContainer}
+      />
       <Stack.Screen name="Mis compras" component={ReceiptsScreenContainer} />
       <Stack.Screen
         name="Cambiar contraseña"

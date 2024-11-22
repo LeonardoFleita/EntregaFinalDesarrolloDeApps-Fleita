@@ -7,6 +7,8 @@ import TabNavigator from "./src/navigation/TabNavigator";
 import store from "./src/store/store";
 import { Provider } from "react-redux";
 import { colors } from "./src/global/colors";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "./src/global/toastConfig";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,6 +32,7 @@ export default function App() {
       <Provider store={store}>
         <TabNavigator />
         <StatusBar style="light" />
+        <Toast config={toastConfig} />
       </Provider>
     </View>
   );

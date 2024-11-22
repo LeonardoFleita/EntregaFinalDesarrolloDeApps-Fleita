@@ -1,16 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
-import products from "../../../data/products";
-import { useEffect, useState } from "react";
 import ProductDetailCard from "./ProductDetailCard";
 
-const ProductDetailScreen = ({ route, navigation }) => {
-  const [product, setProduct] = useState({});
-  const productId = route.params;
-
-  useEffect(() => {
-    setProduct(products.find((p) => p.id === productId));
-  }, [productId]);
-
+const ProductDetailScreen = ({ navigation, product }) => {
   return (
     <ScrollView style={{ width: "90%", alignSelf: "center" }}>
       <ProductDetailCard product={product} navigation={navigation} />

@@ -1,5 +1,5 @@
 export { default as CategoriesScreenContainer } from "./categories/CategoriesScreenContainer";
-export { default as ProductDetailScreen } from "./productDetail/ProductDetailScreen";
+export { default as ProductDetailScreenContainer } from "./productDetail/ProductDetailScreenContainer";
 export { default as ProductsScreenContainer } from "./products/ProductsScreenContainer";
 export { default as CartScreenContainer } from "./cart/CartScreenContainer";
 export { default as ProfileContainer } from "./profile/ProfileContainer";
@@ -8,3 +8,4 @@ export { default as LocationScreenContainer } from "./profile/location/LocationS
 export { default as ReceiptsScreenContainer } from "./profile/receipts/ReceiptsScreenContainer";
 export { default as ChangePasswordScreenContainer } from "./profile/changePassword/ChangePasswordScreenContainer";
 export { default as ConfigScreenContainer } from "./profile/config/ConfigScreenContainer";
+export { default as PersonalDataScreenContainer } from "./profile/personalData/PersonalDataScreenContainer";

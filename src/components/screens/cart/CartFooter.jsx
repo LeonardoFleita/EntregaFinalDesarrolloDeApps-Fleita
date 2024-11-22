@@ -53,7 +53,6 @@ const CartFooter = ({
       >
         <Text style={{ ...styles.bttnText, color: colors.black }}>Comprar</Text>
       </Pressable>
-
       <TwoButtonsModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

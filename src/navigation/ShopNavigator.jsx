@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   CategoriesScreenContainer,
   ProductsScreenContainer,
-  ProductDetailScreen,
+  ProductDetailScreenContainer,
   FavouritesScreenContainer,
 } from "../components/screens";
 import { colors } from "../global/colors";
@@ -44,7 +44,7 @@ const ShopNavigator = () => {
       <Stack.Screen name="Productos" component={ProductsScreenContainer} />
       <Stack.Screen
         name="Producto"
-        component={ProductDetailScreen}
+        component={ProductDetailScreenContainer}
         options={{ headerTitle: "" }}
       />
       <Stack.Screen name="Favoritos" component={FavouritesScreenContainer} />
