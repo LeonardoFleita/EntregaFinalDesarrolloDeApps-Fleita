@@ -24,7 +24,8 @@ const LogScreenContainer = ({ setNewUser }) => {
 
   useEffect(() => {
     if (user && !isFetching) {
-      dispatch(setUser({ ...user, localId }));
+      const favourites = user.favourites ? Object.values(user.favourites) : [];
+      dispatch(setUser({ ...user, localId, favourites }));
       if (rememberMe) {
         clearSession();
         insertSession({ email: user.email, localId, token: idToken });

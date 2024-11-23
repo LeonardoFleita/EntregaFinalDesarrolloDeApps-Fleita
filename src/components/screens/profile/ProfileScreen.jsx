@@ -26,16 +26,16 @@ const ProfileScreen = ({ user, pickImage, handleCloseSession, navigation }) => {
             navigateTo="Mis compras"
           />
           <ProfileSelector
-            legend="Cambiar contraseña"
-            nameIcon="lock"
-            navigation={navigation}
-            navigateTo="Cambiar contraseña"
-          />
-          <ProfileSelector
             legend="Mis direcciones"
             nameIcon="location-on"
             navigation={navigation}
             navigateTo="Ubicación"
+          />
+          <ProfileSelector
+            legend="Cambiar contraseña"
+            nameIcon="lock"
+            navigation={navigation}
+            navigateTo="Cambiar contraseña"
           />
           <ProfileSelector
             legend="Configuración"

@@ -10,6 +10,7 @@ const authSlice = createSlice({
       token: "",
       localId: "",
       profilePicture: "",
+      favourites: [],
     },
   },
   reducers: {
@@ -27,9 +28,13 @@ const authSlice = createSlice({
     setProfilePicture: (state, action) => {
       state.value.profilePicture = action.payload;
     },
+    setFavourites: (state, action) => {
+      state.value.favourites = action.payload;
+    },
   },
 });
 
-export const { setUser, clearUser, setProfilePicture } = authSlice.actions;
+export const { setUser, clearUser, setProfilePicture, setFavourites } =
+  authSlice.actions;
 
 export default authSlice.reducer;

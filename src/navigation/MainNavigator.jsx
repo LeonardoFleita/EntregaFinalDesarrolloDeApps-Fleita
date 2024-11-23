@@ -35,7 +35,8 @@ const MainNavigator = () => {
 
   useEffect(() => {
     if (user && !isFetching) {
-      dispatch(setUser({ ...user, localId: session.localId }));
+      const favourites = user.favourites ? Object.values(user.favourites) : [];
+      dispatch(setUser({ ...user, localId: session.localId, favourites }));
     }
   }, [user, isFetching, session, dispatch]);
 

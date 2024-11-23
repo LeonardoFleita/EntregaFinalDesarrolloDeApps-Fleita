@@ -1,12 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import InConstruction from "../../../common/InConstruction";
 
 const LocationScreen = () => {
-  return (
-    <View>
-      <Text>LocationScreen</Text>
-    </View>
-  );
+  return <InConstruction />;
 };
 
 export default LocationScreen;

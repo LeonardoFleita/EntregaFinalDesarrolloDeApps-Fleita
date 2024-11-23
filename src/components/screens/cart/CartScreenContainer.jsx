@@ -1,13 +1,15 @@
 import { StyleSheet } from "react-native";
 import CartScreen from "./CartScreen";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useGetReceiptsQuery,
   usePostReceiptMutation,
 } from "../../../services/userService";
 import { cleanCart } from "../../../features/cart/cartSlice";
 import { showToast } from "../../../global/toastConfig";
+import { useIsFocused } from "@react-navigation/native";
+import { hideFav } from "../../../features/header/headerSlice";
 
 const CartScreenContainer = ({ navigation }) => {
   const cart = useSelector((state) => state.cartReducer.value.cartItems);
@@ -15,7 +17,7 @@ const CartScreenContainer = ({ navigation }) => {
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
-
+  const isFocused = useIsFocused();
   const [triggerPost] = usePostReceiptMutation();
   const user = useSelector((state) => state.authReducer.value);
 
@@ -35,6 +37,10 @@ const CartScreenContainer = ({ navigation }) => {
       setErrorModalVisible(true);
     }
   };
+
+  useEffect(() => {
+    isFocused && dispatch(hideFav());
+  }, [isFocused]);
 
   return (
     <CartScreen

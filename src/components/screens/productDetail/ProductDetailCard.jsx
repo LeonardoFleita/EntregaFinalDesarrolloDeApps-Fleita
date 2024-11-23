@@ -5,8 +5,15 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../../features/cart/cartSlice";
 import { priceFormat } from "../../../utils/functions";
 import { buttonStyles, press } from "../../../styles/styles";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const ProductDetailCard = ({ product, navigation }) => {
+const ProductDetailCard = ({
+  product,
+  navigation,
+  user,
+  handleFavorite,
+  favourite,
+}) => {
   const dispatch = useDispatch();
 
   return (
@@ -19,6 +26,15 @@ const ProductDetailCard = ({ product, navigation }) => {
             resizeMode="contain"
           />
         )}
+        {user.name ? (
+          <Pressable style={styles.fav} onPress={handleFavorite}>
+            <Icon
+              name={favourite ? "heart" : "heart-outline"}
+              size={32}
+              color={colors.darkGrey}
+            />
+          </Pressable>
+        ) : null}
       </View>
       <View style={styles.textContainer}>
         <Text style={{ ...styles.text, ...styles.title }}>{product.name}</Text>
@@ -66,10 +82,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     aspectRatio: 1.2,
     borderRadius: 15,
+    position: "relative",
   },
   image: {
     width: "80%",
     height: "80%",
+  },
+  fav: {
+    position: "absolute",
+    top: 15,
+    right: 20,
   },
   textContainer: {
     justifyContent: "space-around",

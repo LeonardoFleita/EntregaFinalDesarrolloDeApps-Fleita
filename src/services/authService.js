@@ -19,7 +19,22 @@ export const authApi = createApi({
         body: auth,
       }),
     }),
+    changePassword: builder.mutation({
+      query: ({ idToken, newPassword }) => ({
+        url: `/accounts:update?key=${apiKey}`,
+        method: "POST",
+        body: {
+          idToken,
+          password: newPassword,
+          returnSecureToken: true,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation, useLoginMutation } = authApi;
+export const {
+  useSignUpMutation,
+  useLoginMutation,
+  useChangePasswordMutation,
+} = authApi;

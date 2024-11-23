@@ -33,6 +33,13 @@ export const userApi = createApi({
         body: receipt,
       }),
     }),
+    setFavourites: builder.mutation({
+      query: ({ userId, favourites }) => ({
+        url: `/users/${userId}/favourites.json`,
+        method: "PUT",
+        body: favourites,
+      }),
+    }),
     getUser: builder.query({
       query: ({ localId }) => `/users/${localId}.json`,
     }),
@@ -47,6 +54,7 @@ export const {
   useUpdateProfilePictureMutation,
   useUpdateNameMutation,
   usePostReceiptMutation,
+  useSetFavouritesMutation,
   useGetUserQuery,
   useGetReceiptsQuery,
 } = userApi;

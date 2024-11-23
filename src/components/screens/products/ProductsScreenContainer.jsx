@@ -4,12 +4,21 @@ import { useEffect, useState } from "react";
 import { searchedProduct } from "../../../utils/functions";
 import ProductsScreen from "./ProductsScreen";
 import { colors } from "../../../global/colors";
+import { useIsFocused } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { hideFav } from "../../../features/header/headerSlice";
 
 const ProductsScreenContainer = ({ navigation, route }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const { data: products, isLoading } = useGetProductsQuery();
   const { category, search } = route.params;
+  const isFocused = useIsFocused();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    isFocused && dispatch(hideFav());
+  }, [isFocused]);
 
   useEffect(() => {
     if (products) {
