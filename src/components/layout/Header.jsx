@@ -37,7 +37,7 @@ const Header = ({ navigation }) => {
         }}
       >
         <Icon
-          name="heart"
+          name="heart-outline"
           size={38}
           color={isFav ? colors.yellow : colors.mediumGrey}
         />

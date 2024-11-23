@@ -41,7 +41,8 @@ export const sessionStyles = {
   inputContainer: {
     width: "80%",
     gap: 13,
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   textInput: {
     borderRadius: 25,
@@ -50,5 +51,15 @@ export const sessionStyles = {
     paddingHorizontal: 10,
     height: 38,
     alignSelf: "center",
+  },
+  rememberContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 20,
+  },
+  text: {
+    color: colors.lightGrey,
+    fontSize: 16,
   },
 };

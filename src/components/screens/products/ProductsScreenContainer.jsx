@@ -1,8 +1,9 @@
-import { StyleSheet, ActivityIndicator } from "react-native";
+import { StyleSheet, ActivityIndicator, View } from "react-native";
 import { useGetProductsQuery } from "../../../services/shopService";
 import { useEffect, useState } from "react";
 import { searchedProduct } from "../../../utils/functions";
 import ProductsScreen from "./ProductsScreen";
+import { colors } from "../../../global/colors";
 
 const ProductsScreenContainer = ({ navigation, route }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -29,7 +30,9 @@ const ProductsScreenContainer = ({ navigation, route }) => {
   return (
     <>
       {isLoading ? (
-        <ActivityIndicator size={30} />
+        <View style={styles.loader}>
+          <ActivityIndicator size="large" color={colors.yellow} />
+        </View>
       ) : (
         <ProductsScreen
           navigation={navigation}
@@ -46,4 +49,10 @@ const ProductsScreenContainer = ({ navigation, route }) => {
 
 export default ProductsScreenContainer;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

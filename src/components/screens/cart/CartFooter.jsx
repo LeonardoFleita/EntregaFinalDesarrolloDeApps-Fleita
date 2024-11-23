@@ -57,6 +57,8 @@ const CartFooter = ({
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         onCloseModal={buying ? onCloseConfirmModal : onCloseCleanModal}
+        onCancelModal={() => {}}
+        cancelButton="CANCELAR"
         confirmButton={buying ? "COMPRAR" : "ELIMINAR"}
       >
         <Text style={{ ...styles.text, fontSize: 20 }}>

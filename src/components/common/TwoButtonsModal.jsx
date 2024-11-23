@@ -6,7 +6,9 @@ const TwoButtonsModal = ({
   children,
   modalVisible,
   setModalVisible,
+  onCancelModal,
   onCloseModal,
+  cancelButton,
   confirmButton,
 }) => {
   return (
@@ -26,9 +28,14 @@ const TwoButtonsModal = ({
               gap: 30,
             }}
           >
-            <Pressable onPress={() => setModalVisible(false)}>
+            <Pressable
+              onPress={() => {
+                setModalVisible(false);
+                onCancelModal();
+              }}
+            >
               <Text style={{ alignSelf: "flex-end", color: colors.lightGrey }}>
-                CANCELAR
+                {cancelButton}
               </Text>
             </Pressable>
             <Pressable

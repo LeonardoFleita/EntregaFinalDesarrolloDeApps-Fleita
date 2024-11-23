@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { buttonStyles, press, sessionStyles } from "../../../../styles/styles";
 import { colors } from "../../../../global/colors";
 import AuthModal from "./AuthModal";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const LogScreen = ({
   setNewUser,
@@ -12,6 +13,8 @@ const LogScreen = ({
   setError,
   modalVisible,
   setModalVisible,
+  rememberMe,
+  setRememberMe,
 }) => {
   return (
     <View style={sessionStyles.container}>
@@ -31,6 +34,16 @@ const LogScreen = ({
           autoCapitalize="none"
         />
       </View>
+      <View style={sessionStyles.rememberContainer}>
+        <Text style={sessionStyles.text}>Mantener sesión iniciada</Text>
+        <Pressable style={press()} onPress={() => setRememberMe(!rememberMe)}>
+          <Icon
+            name={rememberMe ? "toggle-switch" : "toggle-switch-off"}
+            color={rememberMe ? colors.yellow : colors.mediumGrey}
+            size={45}
+          />
+        </Pressable>
+      </View>
       <Pressable
         style={press({ ...buttonStyles.base, ...styles.logBttn })}
         onPress={onSubmit}
@@ -42,11 +55,7 @@ const LogScreen = ({
         onPress={() => setNewUser(true)}
       >
         <Text
-          style={{
-            color: colors.lightGrey,
-            textDecorationLine: "underline",
-            fontSize: 16,
-          }}
+          style={{ ...sessionStyles.text, textDecorationLine: "underline" }}
         >
           Registrarse
         </Text>

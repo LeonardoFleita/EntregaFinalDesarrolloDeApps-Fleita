@@ -1,6 +1,5 @@
 import { Image, StyleSheet, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import ShopNavigator from "./ShopNavigator";
 import ProfileNavigator from "./ProfileNavigator";
@@ -15,89 +14,87 @@ const TabNavigator = () => {
   const { profilePicture } = useSelector((state) => state.authReducer.value);
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Store"
-        screenOptions={{
-          headerShown: true,
-          tabBarShowLabel: false,
+    <Tab.Navigator
+      initialRouteName="Store"
+      screenOptions={{
+        headerShown: true,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBar,
+        headerTitleAlign: "center",
+        header: ({ navigation, route }) => (
+          <Header navigation={navigation} route={route} />
+        ),
+      }}
+    >
+      <Tab.Screen
+        name="Store"
+        component={ShopNavigator}
+        options={{
           tabBarStyle: styles.tabBar,
-          headerTitleAlign: "center",
-          header: ({ navigation, route }) => (
-            <Header navigation={navigation} route={route} />
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name={focused ? "shopping" : "shopping-outline"}
+              size={27}
+              color={focused ? colors.yellow : colors.lightGrey}
+            />
           ),
         }}
-      >
-        <Tab.Screen
-          name="Store"
-          component={ShopNavigator}
-          options={{
-            tabBarStyle: styles.tabBar,
-            tabBarIcon: ({ focused }) => (
-              <Icon
-                name={focused ? "shopping" : "shopping-outline"}
-                size={27}
-                color={focused ? colors.yellow : colors.lightGrey}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileNavigator}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <View
-                style={
-                  focused
-                    ? {
-                        ...styles.profileImgContainer,
-                        backgroundColor: colors.yellow,
-                      }
-                    : styles.profileImgContainer
-                }
-              >
-                {profilePicture ? (
-                  <Image
-                    source={{ uri: profilePicture }}
-                    style={
-                      focused
-                        ? styles.profileImg
-                        : {
-                            ...styles.profileImg,
-                            opacity: 0.7,
-                            backgroundColor: colors.darkGrey,
-                          }
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={
+                focused
+                  ? {
+                      ...styles.profileImgContainer,
+                      backgroundColor: colors.yellow,
                     }
-                  />
-                ) : (
-                  <Image
-                    source={{
-                      uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732213144/desarrollo%20de%20apps/ecommerce/p5vzyl4jestkoyunal8h.png",
-                    }}
-                    style={{ width: 45, height: 45, borderRadius: 100 }}
-                  />
-                )}
-              </View>
-            ),
-            headerShown: false,
-          }}
-        />
-        <Tab.Screen
-          name="Cart"
-          component={CartScreenContainer}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <Icon
-                name={focused ? "cart" : "cart-outline"}
-                size={27}
-                color={focused ? colors.yellow : colors.mediumGrey}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+                  : styles.profileImgContainer
+              }
+            >
+              {profilePicture ? (
+                <Image
+                  source={{ uri: profilePicture }}
+                  style={
+                    focused
+                      ? styles.profileImg
+                      : {
+                          ...styles.profileImg,
+                          opacity: 0.7,
+                          backgroundColor: colors.darkGrey,
+                        }
+                  }
+                />
+              ) : (
+                <Image
+                  source={{
+                    uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732213144/desarrollo%20de%20apps/ecommerce/p5vzyl4jestkoyunal8h.png",
+                  }}
+                  style={{ width: 45, height: 45, borderRadius: 100 }}
+                />
+              )}
+            </View>
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreenContainer}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name={focused ? "cart" : "cart-outline"}
+              size={27}
+              color={focused ? colors.yellow : colors.mediumGrey}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

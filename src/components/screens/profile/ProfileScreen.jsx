@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import FlatCard from "../../common/FlatCard";
 import { buttonStyles, press } from "../../../styles/styles";
 import ProfileSelector from "../../common/ProfileSelector";
-import ProfilePicture from "./receipts/ProfilePicture";
+import ProfilePicture from "./profilePicture/ProfilePicture";
 
 const ProfileScreen = ({ user, pickImage, handleCloseSession, navigation }) => {
   return (

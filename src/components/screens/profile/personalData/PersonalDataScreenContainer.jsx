@@ -12,7 +12,6 @@ const PersonalDataScreenContainer = () => {
   const [triggerUpdate] = useUpdateNameMutation();
 
   const handleUpdate = () => {
-    console.log(user);
     dispatch(setUser({ name, lastname }));
   };
 

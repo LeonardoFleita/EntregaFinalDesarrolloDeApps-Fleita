@@ -19,7 +19,7 @@ const SignUpScreen = ({
   return (
     <View style={sessionStyles.container}>
       <Text style={sessionStyles.title}>Smartly</Text>
-      <View style={sessionStyles.inputContainer}>
+      <View style={{ ...sessionStyles.inputContainer, marginBottom: 20 }}>
         <TextInput
           onChangeText={(text) => setName(text)}
           placeholder="Nombre"

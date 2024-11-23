@@ -35,7 +35,9 @@ const CategoriesScreen = ({ navigation, categories, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <ActivityIndicator size={30} />
+        <View style={styles.loader}>
+          <ActivityIndicator size="large" color={colors.yellow} />
+        </View>
       ) : (
         <View style={styles.categoriesContainer}>
           <FlatList
@@ -53,6 +55,11 @@ const CategoriesScreen = ({ navigation, categories, isLoading }) => {
 export default CategoriesScreen;
 
 const styles = StyleSheet.create({
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   categoriesContainer: {
     flex: 1,
     alignItems: "center",

@@ -1,7 +1,8 @@
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import ReceiptsScreen from "./ReceiptsScreen";
 import { useGetReceiptsQuery } from "../../../../services/userService";
 import { useSelector } from "react-redux";
+import { colors } from "../../../../global/colors";
 
 const ReceiptsScreenContainer = () => {
   const { localId } = useSelector((state) => state.authReducer.value);
@@ -15,7 +16,9 @@ const ReceiptsScreenContainer = () => {
     : [];
 
   return isLoading ? (
-    <ActivityIndicator size={30} />
+    <View style={styles.loader}>
+      <ActivityIndicator size="large" color={colors.yellow} />
+    </View>
   ) : (
     <ReceiptsScreen receipts={receipts} />
   );
@@ -23,4 +26,10 @@ const ReceiptsScreenContainer = () => {
 
 export default ReceiptsScreenContainer;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

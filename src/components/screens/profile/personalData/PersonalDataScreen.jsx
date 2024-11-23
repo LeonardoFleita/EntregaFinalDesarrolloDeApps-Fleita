@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import FlatCard from "../../../common/FlatCard";
-import ProfilePicture from "../receipts/ProfilePicture";
+import ProfilePicture from "../profilePicture/ProfilePicture";
 import { colors } from "../../../../global/colors";
 import { buttonStyles, press } from "../../../../styles/styles";
 

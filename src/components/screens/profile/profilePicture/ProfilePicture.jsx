@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { press } from "../../../../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { useUpdateProfilePictureMutation } from "../../../../services/userService";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setProfilePicture } from "../../../../features/auth/authSlice";
 import * as ImagePicker from "expo-image-picker";
 
