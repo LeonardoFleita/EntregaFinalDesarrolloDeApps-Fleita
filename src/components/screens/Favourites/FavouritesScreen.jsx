@@ -22,7 +22,7 @@ const FavouritesScreen = ({
       <View style={styles.emptyFavContainer}>
         <Image
           source={{
-            uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732401508/desarrollo%20de%20apps/ecommerce/zyp1wxwsz40kbzddfg6b.png",
+            uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732420653/desarrollo%20de%20apps/ecommerce/rpfw24phgakwfsfsgmuk.png",
           }}
           style={styles.image}
         />
