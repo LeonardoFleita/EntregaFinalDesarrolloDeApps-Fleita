@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import ShopNavigator from "./ShopNavigator";
@@ -11,7 +11,9 @@ import { useSelector } from "react-redux";
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const { profilePicture } = useSelector((state) => state.authReducer.value);
+  const { name, lastname, profilePicture } = useSelector(
+    (state) => state.authReducer.value
+  );
 
   return (
     <Tab.Navigator
@@ -68,6 +70,13 @@ const TabNavigator = () => {
                         }
                   }
                 />
+              ) : name ? (
+                <View style={styles.placeHolderContainer}>
+                  <Text style={styles.textPlaceHolder}>
+                    {name.charAt(0).toUpperCase() +
+                      lastname.charAt(0).toUpperCase()}
+                  </Text>
+                </View>
               ) : (
                 <Image
                   source={{
@@ -126,5 +135,17 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 100,
+  },
+  placeHolderContainer: {
+    backgroundColor: colors.black,
+    width: "90%",
+    height: "90%",
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textPlaceHolder: {
+    color: colors.lightGrey,
+    fontSize: 20,
   },
 });

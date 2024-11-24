@@ -27,7 +27,7 @@ const CartScreen = ({
           <View style={styles.cartImageContainer}>
             <Image
               source={{
-                uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732155586/desarrollo%20de%20apps/ecommerce/aqgv0fffh08i7bmyw0nm.png",
+                uri: "https://res.cloudinary.com/drez01kou/image/upload/v1732475210/desarrollo%20de%20apps/ecommerce/lh5krk7nzeg8usmrhae1.png",
               }}
               style={styles.cartImage}
               resizeMode="contain"
@@ -90,10 +90,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 50,
+    gap: 5,
   },
   cartImage: {
-    width: 350,
-    height: 230,
+    width: 340,
+    height: 250,
     alignSelf: "center",
   },
   cartImageText: {

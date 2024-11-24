@@ -1,9 +1,13 @@
 import { colors } from "../global/colors";
 
+//Botón presionado
+
 export const press =
   (extra = {}) =>
   ({ pressed }) =>
     [{ opacity: pressed ? 0.7 : 1 }, extra];
+
+//Estilo botón genérico
 
 export const buttonStyles = {
   base: {
@@ -20,6 +24,8 @@ export const buttonStyles = {
     fontWeight: "600",
   },
 };
+
+//Estilo login y signUp
 
 export const sessionStyles = {
   container: {
