@@ -6,6 +6,7 @@ import { addItem } from "../../../features/cart/cartSlice";
 import { priceFormat } from "../../../utils/functions";
 import { buttonStyles, press } from "../../../styles/styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { showToast } from "../../../global/toastConfig";
 
 const ProductDetailCard = ({
   product,
@@ -60,7 +61,7 @@ const ProductDetailCard = ({
           style={press({ ...buttonStyles.base })}
           onPress={() => {
             dispatch(addItem({ ...product, quantity: 1 }));
-            navigation.navigate("Cart");
+            showToast("success", "Porudcto agregado al carrito");
           }}
         >
           <Text style={buttonStyles.text}>Agregar al carrito</Text>

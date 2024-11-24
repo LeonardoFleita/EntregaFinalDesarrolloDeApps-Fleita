@@ -27,7 +27,7 @@ const AuthModal = ({
         }}
       >
         {error
-          ? `Error al agregar usuario ${error}`
+          ? `Error al agregar usuario: ${error}`
           : "Usuario agregado con éxito"}
       </Text>
     </GenericModal>

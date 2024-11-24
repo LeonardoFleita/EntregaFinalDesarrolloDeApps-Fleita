@@ -18,12 +18,12 @@ const SignUpScreenContainer = ({ setNewUser }) => {
   const onSubmit = async () => {
     try {
       if (password !== confirmPassword) {
-        setError(": Las contraseñas no coinciden");
+        setError("Las contraseñas deben coincidir");
         setModalVisible(true);
         return;
       }
       if (!name || !lastname || !email || !password) {
-        setError(": Debe completar todos los campos");
+        setError("Debe completar todos los campos");
         setModalVisible(true);
         return;
       }

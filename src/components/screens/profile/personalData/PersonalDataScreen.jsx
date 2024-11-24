@@ -19,17 +19,15 @@ const PersonalDataScreen = ({
         <View style={{ width: "90%", gap: 10 }}>
           <Text style={styles.text}>Nombre:</Text>
           <TextInput
-            placeholder="Buscar producto"
+            placeholder="Nombre"
             style={styles.textInput}
-            returnKeyType="search"
             onChangeText={(text) => setName(text)}
             value={name}
           />
           <Text style={styles.text}>Apellido:</Text>
           <TextInput
-            placeholder="Buscar producto"
+            placeholder="Apellido"
             style={styles.textInput}
-            returnKeyType="search"
             onChangeText={(text) => setLastname(text)}
             value={lastname}
           />
