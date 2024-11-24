@@ -7,16 +7,16 @@ export const toastConfig = {
       {...props}
       style={{
         borderLeftColor: colors.yellow,
-        backgroundColor: colors.mediumGrey,
+        backgroundColor: colors.darkGrey,
       }}
       text1Style={{
         fontSize: 15,
         fontWeight: "bold",
-        color: colors.darkGrey,
+        color: colors.lightGrey,
       }}
       text2Style={{
         fontSize: 14,
-        color: colors.darkGrey,
+        color: colors.lightGrey,
       }}
     />
   ),
@@ -25,16 +25,16 @@ export const toastConfig = {
       {...props}
       style={{
         borderLeftColor: colors.red,
-        backgroundColor: colors.mediumGrey,
+        backgroundColor: colors.darkGrey,
       }}
       text1Style={{
         fontSize: 15,
         fontWeight: "bold",
-        color: colors.darkGrey,
+        color: colors.lightGrey,
       }}
       text2Style={{
         fontSize: 14,
-        color: colors.darkGrey,
+        color: colors.lightGrey,
       }}
     />
   ),
