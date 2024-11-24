@@ -3,6 +3,7 @@ import ReceiptsScreen from "./ReceiptsScreen";
 import { useGetReceiptsQuery } from "../../../../services/userService";
 import { useSelector } from "react-redux";
 import { colors } from "../../../../global/colors";
+import NoReceipts from "../../../common/NoReceipts";
 
 const ReceiptsScreenContainer = () => {
   const { localId } = useSelector((state) => state.authReducer.value);
@@ -19,6 +20,8 @@ const ReceiptsScreenContainer = () => {
     <View style={styles.loader}>
       <ActivityIndicator size="large" color={colors.yellow} />
     </View>
+  ) : receipts.length < 1 ? (
+    <NoReceipts />
   ) : (
     <ReceiptsScreen receipts={receipts} />
   );
