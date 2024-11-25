@@ -8,6 +8,7 @@ import {
   deleteItem,
 } from "../../../features/cart/cartSlice";
 import { press } from "../../../styles/styles";
+import { showToast } from "../../../global/toastConfig";
 
 const InCart = ({ item, dispatch, priceFormat }) => {
   const totalPriceItem = item.price * item.quantity;
@@ -33,7 +34,10 @@ const InCart = ({ item, dispatch, priceFormat }) => {
         {quantityIcon("plus-box", incrementItem(item))}
         <Pressable
           style={press({ paddingLeft: 25 })}
-          onPress={() => dispatch(deleteItem(item))}
+          onPress={() => {
+            dispatch(deleteItem(item));
+            showToast("error", "Producto eliminado del carrito");
+          }}
         >
           <Icon name="delete" size={30} color={colors.yellow} />
         </Pressable>

@@ -4,6 +4,7 @@ import { cleanCart } from "../../../features/cart/cartSlice";
 import { press } from "../../../styles/styles";
 import TwoButtonsModal from "../../common/TwoButtonsModal";
 import { useState } from "react";
+import { showToast } from "../../../global/toastConfig";
 
 const CartFooter = ({
   dispatch,
@@ -15,6 +16,7 @@ const CartFooter = ({
 }) => {
   const onCloseCleanModal = () => {
     dispatch(cleanCart());
+    showToast("error", "Se ha vaciado el carrito");
   };
 
   const onCloseConfirmModal = () => {

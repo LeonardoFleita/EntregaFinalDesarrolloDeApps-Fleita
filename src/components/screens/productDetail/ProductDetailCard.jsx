@@ -8,13 +8,7 @@ import { buttonStyles, press } from "../../../styles/styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { showToast } from "../../../global/toastConfig";
 
-const ProductDetailCard = ({
-  product,
-  navigation,
-  user,
-  handleFavorite,
-  favourite,
-}) => {
+const ProductDetailCard = ({ product, user, handleFavorite, favourite }) => {
   const dispatch = useDispatch();
 
   return (
@@ -61,7 +55,7 @@ const ProductDetailCard = ({
           style={press({ ...buttonStyles.base })}
           onPress={() => {
             dispatch(addItem({ ...product, quantity: 1 }));
-            showToast("success", "Porudcto agregado al carrito");
+            showToast("success", "Producto agregado al carrito");
           }}
         >
           <Text style={buttonStyles.text}>Agregar al carrito</Text>

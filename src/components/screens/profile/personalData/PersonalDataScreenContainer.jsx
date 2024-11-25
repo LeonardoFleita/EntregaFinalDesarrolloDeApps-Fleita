@@ -3,6 +3,7 @@ import PersonalDataScreen from "./PersonalDataScreen";
 import { useEffect, useState } from "react";
 import { useUpdateNameMutation } from "../../../../services/userService";
 import { setUser } from "../../../../features/auth/authSlice";
+import { showToast } from "../../../../global/toastConfig";
 
 const PersonalDataScreenContainer = () => {
   const user = useSelector((state) => state.authReducer.value);
@@ -13,6 +14,7 @@ const PersonalDataScreenContainer = () => {
 
   const handleUpdate = () => {
     dispatch(setUser({ name, lastname }));
+    showToast("success", "Se han actualizado los datos");
   };
 
   useEffect(() => {
